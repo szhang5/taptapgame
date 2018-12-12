@@ -52,7 +52,7 @@ export class GamemodePage implements OnInit {
   	// if(this.tap > 48){
    //  	this.restart();
    //  }
-    if(this.tap == 48){
+    if(this.tap == 40){
     	this.presentAlert();
     }
     
