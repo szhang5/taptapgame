@@ -2,6 +2,35 @@
 	--ion-background-color: black;
 }
 
-ion-toolbar {
-	--ion-background-color:#5bcad8;
+.start_bt {
+	position: relative;
+  -webkit-animation: jackInTheBox 2s infinite; /* Safari 4.0 - 8.0 */
+  -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+  animation: jackInTheBox 2s infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes jackInTheBox {
+  from {
+    opacity: 0;
+    transform: scale(0.1) rotate(30deg);
+    transform-origin: center bottom;
+  }
+
+  50% {
+    transform: rotate(-10deg);
+  }
+
+  70% {
+    transform: rotate(3deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.jackInTheBox {
+  animation-name: jackInTheBox;
 }

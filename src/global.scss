@@ -30,3 +30,17 @@ h1 {
 	font-size: 60px;
 }
 
+.start_bt {
+  font-size: 40px;
+}
+
+ion-icon {
+  font-size: 35px;
+}
+
+
+.gameMode_content {
+  background: url('assets/images/road2.png') no-repeat top center fixed;
+  --ion-background-color: none !important;
+  background-size: 360px 700px !important;
+}
