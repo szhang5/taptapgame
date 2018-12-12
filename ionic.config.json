@@ -1,0 +1,7 @@
+{
+  "name": "tabtabGame",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
