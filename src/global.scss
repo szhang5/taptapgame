@@ -24,10 +24,35 @@
   font-size: 25px;
 }
 
+h2 {
+  color: #f04241;
+  font-size: 30px;
+}
+
+#timer {
+  font-size: 45px;
+}
+
+#character_title {
+  text-align: center;
+  letter-spacing: 3px;
+  color: #f04241;
+  font-size: 40px;
+}
+
+.character_icon {
+  color: yellow;
+  font-size: 45px;
+}
+
 h1 {
 	color: #f04241;
 	text-align: center;
-	font-size: 60px;
+	font-size: 70px;
+}
+
+ion-grid {
+  margin-top: 15%;
 }
 
 .start_bt,
@@ -35,7 +60,7 @@ h1 {
 #easy_bt,
 #medium_bt,
 #hard_bt {
-  font-size: 40px;
+  font-size: 50px;
 }
 
 ion-icon {

@@ -1,0 +1,52 @@
+.character_content {
+  --ion-background-color: black;
+}
+
+.character_icon {
+  position: relative;
+  -webkit-animation: rotate 3s infinite; /* Safari 4.0 - 8.0 */
+  -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+  animation: rotate 3s infinite;
+  animation-timing-function: linear;
+}
+
+
+@keyframes rotate {
+  from {
+        -webkit-transform: rotate(0deg);
+  }
+  to {
+      -webkit-transform: rotate(359deg);
+  }
+}
+
+.rotate {
+  animation-name: rotate;
+}
+
+.character_img {
+	position: relative;
+  -webkit-animation: pulse 1s infinite; /* Safari 4.0 - 8.0 */
+  -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+  animation: pulse 1s infinite;
+  animation-timing-function: linear;
+}
+
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+  animation-name: pulse;
+}

@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'gamemode', loadChildren: './gamemode/gamemode.module#GamemodePageModule' },
   { path: 'gamelevel', loadChildren: './gamelevel/gamelevel.module#GamelevelPageModule' },
+  { path: 'character', loadChildren: './character/character.module#CharacterPageModule' },
 ];
 
 @NgModule({

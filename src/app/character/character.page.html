@@ -1,0 +1,27 @@
+<ion-content padding class="character_content">
+	<div id="character_title">CHOOSE <ion-icon class="character_icon" name="snow"></ion-icon>NE</div>
+	<ion-grid>
+	  <ion-row>
+	    <ion-col size="6">
+	      <ion-img class="character_img" [ngStyle]="{'width':'176px'}" src="https://res.cloudinary.com/zoey1111/image/upload/c_scale,w_275/v1545129370/luffy4.png" (click)="chooseCharacter(1)"></ion-img>
+	    </ion-col>
+	    <ion-col size="6">
+	      <ion-img class="character_img" [ngStyle]="{'width':'176px'}" src="https://res.cloudinary.com/zoey1111/image/upload/c_scale,w_275/v1545127932/baoqingtian1.png" (click)="chooseCharacter(2)"></ion-img>
+	    </ion-col>
+	  </ion-row>
+	  <ion-row>
+	    <ion-col size="6">
+	      <ion-img class="character_img" [ngStyle]="{'width':'176px'}" src="https://res.cloudinary.com/zoey1111/image/upload/c_scale,w_275/v1545127932/someone1.png" (click)="chooseCharacter(3)"></ion-img>
+	    </ion-col>
+	    <ion-col size="6">
+	      <ion-img class="character_img" [ngStyle]="{'width':'176px'}" src="https://res.cloudinary.com/zoey1111/image/upload/c_scale,w_275/v1545128673/longmao1.png" (click)="chooseCharacter(4)"></ion-img>
+	    </ion-col>
+	  </ion-row>
+	</ion-grid>
+</ion-content>
+
+<ion-footer>
+	<ion-toolbar>
+  	<ion-button class="goback_bt" color="light" expand="full" fill="clear" (click)="backToHome()">GO BACK</ion-button>
+  </ion-toolbar>
+</ion-footer>
