@@ -10,7 +10,10 @@ import { NavController } from '@ionic/angular';
 export class GamelevelPage implements OnInit {
 	public character: any;
 
-  constructor(private router: Router, public navCtrl : NavController, private route: ActivatedRoute) { }
+  constructor(
+  	private router: Router, 
+  	public navCtrl : NavController, 
+  	private route: ActivatedRoute) { }
 
   ngOnInit() {
   	this.route.params.subscribe(params => {

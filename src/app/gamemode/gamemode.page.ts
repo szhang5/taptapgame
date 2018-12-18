@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import 'hammerjs';
 
 @Component({
@@ -25,7 +26,8 @@ export class GamemodePage implements OnInit {
   constructor(
     public alertController: AlertController,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private tts: TextToSpeech
    ) {}
 
   ngOnInit() {
@@ -140,18 +142,22 @@ export class GamemodePage implements OnInit {
   	// console.log(this.margin);
   	// console.log(parseInt(this.margin, 0) );
   	// console.log(this.size);
-
     if(this.margin == "112%" && this.t > 0){
-    	this.presentWin();
+    	this.presentWin().then(success=>{
+        this.youWin();
+      });
     } else if(this.t == 0 && parseInt(this.margin.split('%')[0], 0) < 112){
-      this.presentLose();
+      this.presentLose().then(success=>{
+        this.youLose();
+      });
     }
   }
 
 
   StartTimer(){
     setTimeout(x => {
-      if(this.t <= 0) { }
+      if(this.t <= 0) {}
+
       this.t -= 1;
 
       if(this.t > 0){
@@ -160,9 +166,25 @@ export class GamemodePage implements OnInit {
     }, 1000);
   }
 
+  youLose(){
+    this.tts.speak({
+      text:'You lose hahaha!',
+      rate: 1.5
+    });   
+  }
+
+
+  youWin(){
+    this.tts.speak({
+      text:'You win congratuation!',
+      rate: 1.5
+    });   
+  }
+
 
   restart(){
     this.t = this.timer;
+    this.StartTimer();
     this.tap = 0;
   	this.margin = '-4%';
   	this.size = 1;
