@@ -24,6 +24,7 @@ export class GamemodePage implements OnInit {
   public v2: string = 'block';
   public timer: number;
   public t: number;
+  public tmpTimerVal: number;
   public timerController:any;
   public isPause: boolean = false;
 
@@ -140,30 +141,32 @@ export class GamemodePage implements OnInit {
 
 
   tapEvent(e) {
-    this.tap++;
-    if(this.tap%2==0) {
-      this.v1 = "block";
-      this.v2 = "none";
-    }
-    else {
-      this.v1 = "none";
-      this.v2 = "block";
-    }
-    switch(this.level){
-      case "Easy": 
-        this.margin = `${parseInt(this.margin.split('%')[0], 0) + 4}%`;
-        this.size = this.size + 0.1;
-        break;
-      case "Medium": 
-        this.margin = `${parseInt(this.margin.split('%')[0], 0) + 2}%`;
-        this.size = this.size + 0.05;
-        break;
-      case "Hard": 
-        this.margin = `${parseInt(this.margin.split('%')[0], 0) + 1}%`;
-        this.size = this.size + 0.02;
-        break;
-      default: 
-        break;
+    if(!this.isPause){
+      this.tap++;
+      if(this.tap%2==0) {
+        this.v1 = "block";
+        this.v2 = "none";
+      }
+      else {
+        this.v1 = "none";
+        this.v2 = "block";
+      }
+      switch(this.level){
+        case "Easy": 
+          this.margin = `${parseInt(this.margin.split('%')[0], 0) + 4}%`;
+          this.size = this.size + 0.1;
+          break;
+        case "Medium": 
+          this.margin = `${parseInt(this.margin.split('%')[0], 0) + 2}%`;
+          this.size = this.size + 0.05;
+          break;
+        case "Hard": 
+          this.margin = `${parseInt(this.margin.split('%')[0], 0) + 1}%`;
+          this.size = this.size + 0.02;
+          break;
+        default: 
+          break;
+      }
     }
     // console.log(this.size);
     // console.log(this.margin);
@@ -195,17 +198,18 @@ export class GamemodePage implements OnInit {
   PauseTimer() {
     // console.log("pause");
     this.isPause = true;
-    this.timer = this.t;
+    this.tmpTimerVal = this.t;
     this.timerController.unsubscribe();
   }
 
   ResumeTimer(){
     // console.log("resume");
     if(this.isPause) {
+      this.isPause = false;
       this.timerController = interval(1000)
-      .pipe(take(this.timer))
+      .pipe(take(this.tmpTimerVal))
       .subscribe(x =>{
-        this.t = this.timer - x -1;
+        this.t = this.tmpTimerVal - x -1;
       });
     }
   }
