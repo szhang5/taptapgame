@@ -3,9 +3,14 @@
 	transform: rotate(90deg);
 }
 
+.character_img {
+	width: 50px;
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #car_icon {
-	text-align: center;
-	margin-right: 3%;
   position: relative;
 }
 

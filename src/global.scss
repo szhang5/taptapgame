@@ -25,12 +25,16 @@
 }
 
 h1 {
-	color: red;
+	color: #f04241;
 	text-align: center;
 	font-size: 60px;
 }
 
-.start_bt {
+.start_bt,
+.goback_bt,
+#easy_bt,
+#medium_bt,
+#hard_bt {
   font-size: 40px;
 }
 
@@ -38,6 +42,13 @@ ion-icon {
   font-size: 35px;
 }
 
+#home-icon {
+  font-size: 250px;
+}
+
+.btns {
+  margin-top: 20%;
+}
 
 .gameMode_content {
   background: url('assets/images/road2.png') no-repeat top center fixed;

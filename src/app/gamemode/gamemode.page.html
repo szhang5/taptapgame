@@ -4,7 +4,9 @@
 		<h1>{{tap}}</h1>
 	</div> -->
 	<div id="car_icon" [ngStyle]="{'margin-top': margin, 'transform': 'scale(' + size + ')'}">
-		<ion-icon name="car" color="danger" large></ion-icon>
+		<!-- <ion-icon name="car" color="danger" large></ion-icon> -->
+		<ion-img class="character_img" [ngStyle]="{'display': v2}" src="https://res.cloudinary.com/zoey1111/image/upload/c_scale,w_275/v1545125257/luffy1.png"></ion-img>
+		<ion-img class="character_img" [ngStyle]="{'display': v1}" src="https://res.cloudinary.com/zoey1111/image/upload/c_scale,w_275/v1545125266/luffy2.png"></ion-img>
 	</div>
 
 </ion-content>

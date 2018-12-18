@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { GamemodePage } from '../gamemode/gamemode.page';
 
 @Component({
   selector: 'app-gamelevel',
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class GamelevelPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public navCtrl : NavController) { }
 
   ngOnInit() {
   }
@@ -19,6 +21,18 @@ export class GamelevelPage implements OnInit {
 	  }, err => {
 	    console.log(err);
 	  });
+	}
+
+	startEasy(level) {
+	  this.router.navigate(['/gamemode', { level }]);
+	}
+
+	startMedium(level){
+		this.router.navigate(['/gamemode', { level }]);
+	}
+
+	startHard(level){
+		this.router.navigate(['/gamemode', { level }]);
 	}
 
 }
