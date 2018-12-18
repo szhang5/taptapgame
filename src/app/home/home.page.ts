@@ -11,7 +11,7 @@ export class HomePage {
 constructor(private router: Router) {}
 
 startGame(){
-	this.router.navigateByUrl('/gamemode').then(nav => {
+	this.router.navigateByUrl('/gamelevel').then(nav => {
     console.log(nav); 
   }, err => {
     console.log(err);
