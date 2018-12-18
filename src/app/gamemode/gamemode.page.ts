@@ -27,6 +27,7 @@ export class GamemodePage implements OnInit {
   public tmpTimerVal: number;
   public timerController:any;
   public isPause: boolean = false;
+  public target: number = 124;
 
   constructor(
     public alertController: AlertController,
@@ -154,15 +155,18 @@ export class GamemodePage implements OnInit {
       switch(this.level){
         case "Easy": 
           this.margin = `${parseInt(this.margin.split('%')[0], 0) + 4}%`;
+          this.target -= 4;
           this.size = this.size + 0.1;
           break;
         case "Medium": 
           this.margin = `${parseInt(this.margin.split('%')[0], 0) + 2}%`;
           this.size = this.size + 0.05;
+          this.target -= 2;
           break;
         case "Hard": 
           this.margin = `${parseInt(this.margin.split('%')[0], 0) + 1}%`;
           this.size = this.size + 0.02;
+          this.target -= 1;
           break;
         default: 
           break;
@@ -173,12 +177,12 @@ export class GamemodePage implements OnInit {
     // console.log(parseInt(this.margin, 0) );
     // console.log(this.t);
     
-    if(this.margin == "112%" && this.t > 0){
+    if(parseInt(this.margin.split('%')[0], 0) >= 120 && this.t >= 0){
       this.timerController.unsubscribe();
       this.presentWin().then(success=>{
         this.youWin();
       });
-    } else if(this.t == 0 && parseInt(this.margin.split('%')[0], 0) < 112){
+    } else if(this.t <= 0 && parseInt(this.margin.split('%')[0], 0) < 120){
       this.timerController.unsubscribe();
       this.presentLose().then(success=>{
         this.youLose();
@@ -232,11 +236,13 @@ export class GamemodePage implements OnInit {
 
 
   restart(){
+    this.timerController.unsubscribe();
     this.t = this.timer;
     this.StartTimer();
     this.tap = 0;
   	this.margin = '-4%';
   	this.size = 1;
+    this.target = 124;
   }
 
   backToCharacter(){

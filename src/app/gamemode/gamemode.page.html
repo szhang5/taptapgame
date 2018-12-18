@@ -7,6 +7,8 @@
       <ion-fab-button mini color="warning"><ion-icon name="shirt" (click)="backToCharacter()"></ion-icon></ion-fab-button>
 	    <ion-fab-button mini color="primary"><ion-icon name="play" (click)="ResumeTimer()"></ion-icon></ion-fab-button>
 	   	<ion-fab-button mini color="dark"><ion-icon name="pause" (click)="PauseTimer()"></ion-icon></ion-fab-button>
+	   	<ion-fab-button mini color="danger"><ion-icon name="refresh" (click)="restart()"></ion-icon></ion-fab-button>
+	   	<ion-fab-button mini color="twitter">{{target}}</ion-fab-button>
 	  </ion-fab>
 	  
 	<div id="car_icon" [ngStyle]="{'margin-top': margin, 'transform': 'scale(' + size + ')'}">
