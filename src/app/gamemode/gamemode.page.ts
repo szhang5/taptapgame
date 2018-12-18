@@ -208,7 +208,6 @@ export class GamemodePage implements OnInit {
         this.t = this.timer - x -1;
       });
     }
-    
   }
 
 //Voice setting
@@ -245,12 +244,11 @@ export class GamemodePage implements OnInit {
   }
 
   backToHome(){
-      this.router.navigateByUrl('/home').then(nav => {
+    this.router.navigateByUrl('/home').then(nav => {
       console.log(nav); 
     }, err => {
       console.log(err);
     });
-    }
   }
 }
 
