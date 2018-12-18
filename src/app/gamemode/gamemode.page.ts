@@ -2,6 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
+import { interval } from 'rxjs';
+import { take } from 'rxjs/operators';
 import 'hammerjs';
 
 @Component({
@@ -22,6 +24,8 @@ export class GamemodePage implements OnInit {
   public v2: string = 'block';
   public timer: number;
   public t: number;
+  public timerController:any;
+  public isPause: boolean = false;
 
   constructor(
     public alertController: AlertController,
@@ -40,7 +44,7 @@ export class GamemodePage implements OnInit {
       this.setCharacter(this.character);
     } 
     this.t = this.timer;
-    this.StartTimer();
+    this.readyAlert()
   }
 
   setCharacter(character){
@@ -67,6 +71,29 @@ export class GamemodePage implements OnInit {
     }
   }
 
+//Alert
+  async readyAlert() {
+    const alert = await this.alertController.create({
+      header: 'Ready?',
+      message: 'Once you click the Go button, Timer will start and you need to tap as fast as you can to get to the botton of the screen. Are you Ready?',
+      buttons: [{
+        text: 'Go',
+        cssClass: 'secondary',
+        handler: () => {
+          this.StartTimer();
+        }
+      }, {
+        text: 'Not Ready',
+        handler: () => {
+          this.backToCharacter();
+        }
+      }],
+      backdropDismiss: false
+    });
+
+    await alert.present();
+  }
+
   async presentWin() {
     const alert = await this.alertController.create({
       header: 'You Win!',
@@ -80,7 +107,7 @@ export class GamemodePage implements OnInit {
         text: 'Okay',
         handler: () => {
         	this.restart();
-          this.backToHome();
+          this.backToCharacter();
         }
       }],
       backdropDismiss: false
@@ -102,7 +129,7 @@ export class GamemodePage implements OnInit {
         text: 'Okay',
         handler: () => {
           this.restart();
-          this.backToHome();
+          this.backToCharacter();
         }
       }],
       backdropDismiss: false
@@ -138,46 +165,65 @@ export class GamemodePage implements OnInit {
       default: 
         break;
     }
-  	
-  	// console.log(this.margin);
-  	// console.log(parseInt(this.margin, 0) );
-  	// console.log(this.size);
+    // console.log(this.size);
+    // console.log(this.margin);
+    // console.log(parseInt(this.margin, 0) );
+    // console.log(this.t);
+    
     if(this.margin == "112%" && this.t > 0){
-    	this.presentWin().then(success=>{
+      this.timerController.unsubscribe();
+      this.presentWin().then(success=>{
         this.youWin();
       });
     } else if(this.t == 0 && parseInt(this.margin.split('%')[0], 0) < 112){
+      this.timerController.unsubscribe();
       this.presentLose().then(success=>{
         this.youLose();
       });
     }
   }
 
-
+//Timer Setting
   StartTimer(){
-    setTimeout(x => {
-      if(this.t <= 0) {}
-
-      this.t -= 1;
-
-      if(this.t > 0){
-        this.StartTimer();
-      }
-    }, 1000);
+    this.timerController = interval(1000)
+      .pipe(take(this.timer))
+      .subscribe(x =>{
+        this.t = this.timer - x -1;
+      });
   }
 
+  PauseTimer() {
+    // console.log("pause");
+    this.isPause = true;
+    this.timer = this.t;
+    this.timerController.unsubscribe();
+  }
+
+  ResumeTimer(){
+    // console.log("resume");
+    if(this.isPause) {
+      this.timerController = interval(1000)
+      .pipe(take(this.timer))
+      .subscribe(x =>{
+        this.t = this.timer - x -1;
+      });
+    }
+    
+  }
+
+//Voice setting
   youLose(){
     this.tts.speak({
-      text:'You lose hahaha!',
-      rate: 1.5
+      text:'Oops!!Oops!!Oops!!Oops!!You lose!',
+      rate: 1.8
     });   
   }
 
 
   youWin(){
     this.tts.speak({
-      text:'You win congratuation!',
-      rate: 1.5
+      text:'Great!!!! You did it!',
+      rate: 1.6
     });   
   }
 
@@ -190,12 +236,22 @@ export class GamemodePage implements OnInit {
   	this.size = 1;
   }
 
-  backToHome(){
-  	this.router.navigateByUrl('/character').then(nav => {
-    console.log(nav); 
-  }, err => {
-    console.log(err);
-  });
+  backToCharacter(){
+    this.router.navigateByUrl('/character').then(nav => {
+      console.log(nav); 
+    }, err => {
+      console.log(err);
+    });
   }
 
+  backToHome(){
+      this.router.navigateByUrl('/home').then(nav => {
+      console.log(nav); 
+    }, err => {
+      console.log(err);
+    });
+    }
+  }
 }
+
+ 

@@ -2,6 +2,13 @@
 	{{t}}
 </div>
 <ion-content padding class="gameMode_content">
+	  <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+      <ion-fab-button mini color="secondary"><ion-icon name="home"  (click)="backToHome()"></ion-icon></ion-fab-button>
+      <ion-fab-button mini color="warning"><ion-icon name="shirt" (click)="backToCharacter()"></ion-icon></ion-fab-button>
+	    <ion-fab-button mini color="primary"><ion-icon name="play" (click)="ResumeTimer()"></ion-icon></ion-fab-button>
+	   	<ion-fab-button mini color="dark"><ion-icon name="pause" (click)="PauseTimer()"></ion-icon></ion-fab-button>
+	  </ion-fab>
+	  
 	<div id="car_icon" [ngStyle]="{'margin-top': margin, 'transform': 'scale(' + size + ')'}">
 		<ion-img class="character_img" [ngStyle]="{'display': v2}" src={{imgPath1}}></ion-img>
 		<ion-img class="character_img" [ngStyle]="{'display': v1}" src={{imgPath2}}></ion-img>
