@@ -5,8 +5,8 @@
 	  <ion-fab vertical="top" horizontal="end" edge slot="fixed">
       <ion-fab-button mini color="secondary"><ion-icon name="home"  (click)="backToHome()"></ion-icon></ion-fab-button>
       <ion-fab-button mini color="warning"><ion-icon name="shirt" (click)="backToCharacter()"></ion-icon></ion-fab-button>
-	    <ion-fab-button mini color="primary"><ion-icon name="play" (click)="ResumeTimer()"></ion-icon></ion-fab-button>
-	   	<ion-fab-button mini color="dark"><ion-icon name="pause" (click)="PauseTimer()"></ion-icon></ion-fab-button>
+	    <ion-fab-button mini color="primary"><ion-icon ios="ios-play" md="md-play" (click)="ResumeTimer()"></ion-icon></ion-fab-button>
+	   	<ion-fab-button mini color="dark"><ion-icon ios="ios-pause" md="md-pause" (click)="PauseTimer()"></ion-icon></ion-fab-button>
 	   	<ion-fab-button mini color="danger"><ion-icon name="refresh" (click)="restart()"></ion-icon></ion-fab-button>
 	   	<ion-fab-button mini color="twitter">{{target}}</ion-fab-button>
 	  </ion-fab>
