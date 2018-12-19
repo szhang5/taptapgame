@@ -12,6 +12,7 @@ import 'hammerjs';
   styleUrls: ['./gamemode.page.scss'],
 })
 export class GamemodePage implements OnInit {
+  public HEIGHT: number = 136;
 	public tap: number = 0;
 	public margin: string = '-4%';
 	public size: number = 1;
@@ -27,14 +28,15 @@ export class GamemodePage implements OnInit {
   public tmpTimerVal: number;
   public timerController:any;
   public isPause: boolean = false;
-  public target: number = 124;
+  public target: number = this.HEIGHT+4;
 
   constructor(
     public alertController: AlertController,
     private router: Router,
     private route: ActivatedRoute,
-    private tts: TextToSpeech
-   ) {}
+    private tts: TextToSpeech,
+   ) {
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -140,7 +142,6 @@ export class GamemodePage implements OnInit {
     await alert.present();
   }
 
-
   tapEvent(e) {
     if(!this.isPause){
       this.tap++;
@@ -177,12 +178,12 @@ export class GamemodePage implements OnInit {
     // console.log(parseInt(this.margin, 0) );
     // console.log(this.t);
     
-    if(parseInt(this.margin.split('%')[0], 0) >= 120 && this.t >= 0){
+    if(parseInt(this.margin.split('%')[0], 0) >= this.HEIGHT && this.t >= 0){
       this.timerController.unsubscribe();
       this.presentWin().then(success=>{
         this.youWin();
       });
-    } else if(this.t <= 0 && parseInt(this.margin.split('%')[0], 0) < 120){
+    } else if(this.t <= 0 && parseInt(this.margin.split('%')[0], 0) < this.HEIGHT){
       this.timerController.unsubscribe();
       this.presentLose().then(success=>{
         this.youLose();
@@ -221,15 +222,15 @@ export class GamemodePage implements OnInit {
 //Voice setting
   youLose(){
     this.tts.speak({
-      text:'Oops!!Oops!!Oops!!Oops!!You lose!',
-      rate: 1.8
+      text:'Oops!! You lose! Hahahahaha',
+      rate: 1.6
     });   
   }
 
 
   youWin(){
     this.tts.speak({
-      text:'Great!!!! You did it!',
+      text:'Cool!!!! You did it! Yeah!',
       rate: 1.6
     });   
   }
@@ -242,7 +243,7 @@ export class GamemodePage implements OnInit {
     this.tap = 0;
   	this.margin = '-4%';
   	this.size = 1;
-    this.target = 124;
+    this.target = this.HEIGHT+4;
   }
 
   backToCharacter(){
