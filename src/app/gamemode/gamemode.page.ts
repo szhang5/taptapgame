@@ -81,7 +81,7 @@ export class GamemodePage implements OnInit {
       header: 'Ready?',
       message: 'Once you click the Go button, Timer will start and you need to tap as fast as you can to get to the botton of the screen. Are you Ready?',
       buttons: [{
-        text: 'Go',
+        text: 'Go, TAP!!!',
         cssClass: 'secondary',
         handler: () => {
           this.StartTimer();
